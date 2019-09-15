@@ -6,6 +6,7 @@ import {Image} from 'react-native';
 import MapScreen from '../screens/map';
 import NewsScreen from '../screens/news';
 import InfoScreen from '../screens/info';
+import FacilitiesScreen from '../screens/facilities';
 
 const MapStack = createStackNavigator({
   Map: MapScreen,
@@ -19,8 +20,17 @@ const InfoStack = createStackNavigator({
   Info: InfoScreen,
 });
 
+const FacilitiesStack = createStackNavigator({
+  Facilities: FacilitiesScreen,
+});
+
 export const AppStack = createBottomTabNavigator(
-  {Map: MapStack, News: NewsStack, Info: InfoStack},
+  {
+    Map: MapStack,
+    News: NewsStack,
+    Facilities: FacilitiesStack,
+    Info: InfoStack,
+  },
   {
     initialRouteName: 'Map',
     defaultNavigationOptions: ({navigation}) => ({
@@ -40,6 +50,11 @@ export const AppStack = createBottomTabNavigator(
           focused
             ? (image = require('../assets/asset_index/menuTabBtn_linkvan_selected.png'))
             : (image = require('../assets/asset_index/menuTabBtn_linkvan_default.png'));
+        } else if (routeName === 'Facilities') {
+          showStyle = false;
+          focused
+            ? (image = require('../assets/asset_index/menuTabBtn_house_selected.png'))
+            : (image = require('../assets/asset_index/menuTabBtn_house_default.png'));
         } else if (routeName === 'News') {
           showStyle = false;
           focused
