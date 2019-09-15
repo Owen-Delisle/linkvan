@@ -8,9 +8,12 @@
 
 import React from 'react';
 import Map from './src/screens/map';
+import TopBar from './src/components/topBar/';
 
 const App = () => {
-  return <Map />;
+  return (
+    <TopBar />
+    );
 };
 
 export default App;
