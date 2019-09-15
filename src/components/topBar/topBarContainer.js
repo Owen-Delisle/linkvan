@@ -11,6 +11,6 @@ export default class TopBarContainer extends Component {
     }
         
         render() {
-            return(<TopBar/>)
+            return(<TopBar addType={this.props.addType} removeType={this.props.removeType}/>)
         }
     }

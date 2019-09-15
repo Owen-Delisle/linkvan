@@ -10,8 +10,9 @@ export default class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      types: ['food', 'shelter'],
+      types: [],
       focusedLocationID: '',
+      filteredLocations: [],
       locations: [
         {
           type: 'shelter',
@@ -22,7 +23,7 @@ export default class MapContainer extends Component {
           description: '1',
         },
         {
-          type: 'shelter',
+          type: 'wifi',
           id: '2',
           longitude: '-123.143947',
           latitude: '49.290786',
@@ -38,7 +39,7 @@ export default class MapContainer extends Component {
           description: '3',
         },
         {
-          type: 'hospital',
+          type: 'medical',
           id: '4',
           longitude: '-123.102799',
           latitude: '49.265380',
@@ -51,16 +52,35 @@ export default class MapContainer extends Component {
 
   componentDidMount() {
     this.setState({
-      locations: this.filterLocations(this.state.locations, this.state.types),
-    });
+      filteredLocations: this.state.locations
+    })
   }
 
   addType(type) {
-    this.setState({types: this.state.types.push(type)});
+    let newTypes = this.state.types
+    newTypes.push(type)
+    this.setState({types: newTypes});
+    this.setState({
+      filteredLocations: this.filterLocations(this.state.locations, this.state.types)
+    });
+    // console.log("ADD TYPE", this.state.types);
   }
 
-  removeType(type) {
-    this.setState({types: this.state.types.splice(type, 1)});
+  removeType(t) {
+    let newTypes = this.state.types
+    // let filteredTypes = newTypes.filter(type => type != t)
+    let filteredTypes = newTypes.filter(type => type != t)
+    // if(filteredTypes.length == 0){
+    //   filteredTypes = ['food','medical','shelter','wifi']
+    // }
+    this.setState({types: filteredTypes}, ()=> {
+      // console.log("REMOVE TYPE", filteredTypes);
+      this.setState({
+        filteredLocations: this.filterLocations(this.state.locations, this.state.types)
+      });
+    })
+
+    
   }
 
   filterLocations(locations, types) {
@@ -94,7 +114,7 @@ export default class MapContainer extends Component {
           if (data) {
             return (
               <Map
-                locations={this.state.locations}
+                locations={this.state.filteredLocations}
                 addType={this.addType.bind(this)}
                 removeType={this.removeType.bind(this)}
                 data={data}
