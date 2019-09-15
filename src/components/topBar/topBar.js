@@ -26,28 +26,29 @@ export default class TopBar extends Component {
       wifiSelected: true,
     };
   }
+  setDate(date, month){
+    let d = this.state.datesL[date-1]
+    let m = this.state.monthsL[month]
+    curDate= [d,m]
+    this.setState({curDate: curDate})
+  }
   componentDidMount() {
 
     var that = this;
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
+    this.setDate(date,month);  
     that.setState({
       //Setting the value of the date time
       date:
-        [date, month, year],
+        [date, month, year]
     });
-    // setdate(date,month);
 
 
   }
 
-  // setdate(date, month){
-  //   let d = this.state.datesL[date-1]
-  //   let m = this.state.monthsL[month]
-  //   curDate= [d,m]
-  //   this.setState({curDate: curDate})
-  // }
+  
 
   render() {
     return (
@@ -56,12 +57,18 @@ export default class TopBar extends Component {
         <View style={styles.dropBar}>
           <View style={{flex: 1}}>
           <Dropdown  
-            ref={'this.state.curDate[0]'}
+            label='Date'
+            baseColor= '#F1E3A7'
+            textColor= '#F1E3A7'
+            value= '15 th'
             data={this.state.datesL}/>
           </View>
-          <View style={{flex: 1}}>
+          <View style={{flex: 1, width: '30%', }}>
           <Dropdown 
-            ref={this.state.curDate[1]} 
+            label='Month'
+            baseColor= '#F1E3A7'
+            textColor= '#F1E3A7'
+            value = 'September'
             data={this.state.monthsL}/>
           </View>
         </View>
@@ -132,6 +139,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   topBarText: {
+    paddingBottom:0,
+    color: '#F1E3A7',
+    fontSize: 20,
+    textAlign: 'left',
+    textAlignVertical: 'center',
+    marginLeft: '10%'
+  },
+  topBarText2: {
+    paddingTop:0,
     color: '#F1E3A7',
     fontSize: 20,
     textAlign: 'left',
@@ -143,7 +159,8 @@ const styles = StyleSheet.create({
     width: 50,
   },
   dropBar: {
-    width: '50%',
+    paddingTop: 0,
+    width: '60%',
     marginLeft: '10%',
     flexDirection: 'row',
     color: 'red'
