@@ -3,6 +3,7 @@ import MapView from 'react-native-maps';
 import {View, Image} from 'react-native';
 import styles from './styles';
 import {Marker} from 'react-native-maps';
+import TopBar from '../../components/topBar';
 
 const marker = require('../../assets/asset_index/pin_unselected.png');
 const selectedMarker = require('../../assets/asset_index/pin_selected.png');
@@ -47,6 +48,7 @@ export default class Map extends Component {
             </Marker>
           ))}
         </MapView>
+        <TopBar />
       </View>
     );
   }

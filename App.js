@@ -11,9 +11,7 @@ import Map from './src/screens/map';
 import TopBar from './src/components/topBar/';
 
 const App = () => {
-  return (
-    <TopBar />
-    );
+  return <Map />;
 };
 
 export default App;

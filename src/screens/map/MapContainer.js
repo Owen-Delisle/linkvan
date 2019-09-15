@@ -7,6 +7,7 @@ export default class MapContainer extends Component {
       focusedLocationID: '',
       locations: [
         {
+          type: 'shelter',
           id: '1',
           longitude: '-123.124432',
           latitude: '49.281058',
@@ -14,6 +15,7 @@ export default class MapContainer extends Component {
           description: '1',
         },
         {
+          type: 'shelter',
           id: '2',
           longitude: '-123.143947',
           latitude: '49.290786',
@@ -21,6 +23,7 @@ export default class MapContainer extends Component {
           description: '2',
         },
         {
+          type: 'food',
           id: '3',
           longitude: '-123.146740',
           latitude: '49.274334',
@@ -28,6 +31,7 @@ export default class MapContainer extends Component {
           description: '3',
         },
         {
+          type: 'hospital',
           id: '4',
           longitude: '-123.102799',
           latitude: '49.265380',
