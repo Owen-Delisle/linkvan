@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import Map from './Map';
+import {View, Text, ActivityIndicator} from 'react-native';
+import {Query} from 'react-apollo';
+import {QueryLocations} from '../../api';
 export default class MapContainer extends Component {
   static navigationOptions = {
     header: null,
@@ -66,11 +69,40 @@ export default class MapContainer extends Component {
 
   render() {
     return (
-      <Map
-        locations={this.state.locations}
-        addType={this.addType.bind(this)}
-        removeType={this.removeType.bind(this)}
-      />
+      <Query query={QueryLocations}>
+        {({loading, error, data}) => {
+          console.log(data);
+          if (loading) {
+            return (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  backgroundColor: '#1D2C4D',
+                }}>
+                <ActivityIndicator size="large" color="white" />
+              </View>
+            );
+          }
+          if (error) {
+            return (
+              <View>
+                <Text>{error}</Text>
+              </View>
+            );
+          }
+          if (data) {
+            return (
+              <Map
+                locations={this.state.locations}
+                addType={this.addType.bind(this)}
+                removeType={this.removeType.bind(this)}
+                data={data}
+              />
+            );
+          }
+        }}
+      </Query>
     );
   }
 }
