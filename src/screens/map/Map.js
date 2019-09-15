@@ -11,7 +11,7 @@ const selectedMarker = require('../../assets/asset_index/pin_selected.png');
 export default class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {isFocused: false, selectedMarkerIndex: ''};
+    this.state = {selectedMarkerIndex: '', type: 'food'};
   }
 
   onPressMarker(e, index) {
@@ -48,7 +48,7 @@ export default class Map extends Component {
             </Marker>
           ))}
         </MapView>
-        <TopBar />
+        <TopBar setType={this.props.setType} />
       </View>
     );
   }
