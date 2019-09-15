@@ -66,7 +66,11 @@ export default class MapContainer extends Component {
 
   render() {
     return (
-      <Map locations={this.state.locations} addType={this.addType.bind(this)} />
+      <Map
+        locations={this.state.locations}
+        addType={this.addType.bind(this)}
+        removeType={this.removeType.bind(this)}
+      />
     );
   }
 }
