@@ -7,7 +7,7 @@ export default class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: '',
+      types: ['food', 'shelter'],
       focusedLocationID: '',
       locations: [
         {
@@ -48,21 +48,25 @@ export default class MapContainer extends Component {
 
   componentDidMount() {
     this.setState({
-      locations: this.filterLocations(this.state.locations, this.state.type),
+      locations: this.filterLocations(this.state.locations, this.state.types),
     });
   }
 
-  setType(type) {
-    this.setState({type});
+  addType(type) {
+    this.setState({types: this.state.types.push(type)});
   }
 
-  filterLocations(locations, type) {
-    return locations.filter(location => location.type == type);
+  removeType(type) {
+    this.setState({types: this.state.types.splice(type, 1)});
+  }
+
+  filterLocations(locations, types) {
+    return locations.filter(location => types.includes(location.type));
   }
 
   render() {
     return (
-      <Map locations={this.state.locations} setType={this.setType.bind(this)} />
+      <Map locations={this.state.locations} addType={this.addType.bind(this)} />
     );
   }
 }

@@ -48,7 +48,7 @@ export default class Map extends Component {
             </Marker>
           ))}
         </MapView>
-        <TopBar setType={this.props.setType} />
+        <TopBar setType={this.props.addType} />
       </View>
     );
   }
