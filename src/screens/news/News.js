@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
+import EventCal from '../../components/eventCal/'
 
 export default class News extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class News extends Component {
   render() {
     return (
       <View>
-        <Text>HELLO NEWS</Text>
+        <EventCal/>
       </View>
     );
   }
