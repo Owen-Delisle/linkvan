@@ -18,7 +18,8 @@ render() {
             <Calendar 
                 style={styles.calendarStyle}
                 onDayPress={this.onDayPress}
-                markedDates={{[this.state.selected]: {selected: true}}}
+                // markingType={'period'}
+                
                 theme={{
                     backgroundColor: '#018495',
                     calendarBackground: '#018495',
@@ -27,12 +28,10 @@ render() {
                     selectedDayTextColor: '#018495',
                     todayTextColor: '#F1E3A7',
                     dayTextColor: '#FF8587',
-                    textDisabledColor: '#d9e1e8',
                     dotColor: '#F1E3A7',
                     selectedDotColor: '#ffffff',
-                    arrowColor: 'orange',
+                    arrowColor: '#F1E3A7',
                     monthTextColor: '#F1E3A7',
-                    indicatorColor: 'blue',
                     textDayFontWeight: '300',
                     textMonthFontWeight: 'bold',
                     textDayHeaderFontWeight: '300',
@@ -40,15 +39,16 @@ render() {
                     textMonthFontSize: 16,
                     textDayHeaderFontSize: 14
                   }}
-                //   markedDates={{
-                //     '2019-09-17': { marked: true},
-                //     // '2019-09-20': { marked: true, selectedColor: 'blue'},
-                //     // '2019-09-22': { marked: true, selectedColor: 'blue'},
-                //     // '2019-09-05': { marked: true, selectedColor: 'blue'},
-                //     // '2019-09-10': { marked: true, selectedColor: 'blue'},
-                //     // '2019-09-01': { marked: true, selectedColor: 'blue'},
-                    
-                // }}
+                  markedDates={{
+                    [this.state.selected]: {selected: true, selectedDayBackgroundColor: '#F1E3A7',selectedDayTextColor: '#018495',},
+                    '2019-09-17': { marked: true},
+                    '2019-09-20': { marked: true, selectedDayBackgroundColor: 'blue'},
+                    '2019-09-22': { marked: true, selectedColor: 'blue'},
+                    '2019-09-05': { marked: true, selectedColor: 'blue'},
+                    '2019-09-10': { marked: true, selectedColor: 'blue'},
+                    '2019-09-01': { marked: true, selectedColor: 'blue'},
+                }}
+        
                   hideArrows={false}
             />
         </View>
